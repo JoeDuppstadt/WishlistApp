@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:swipable_stack/swipable_stack.dart';
-import 'package:wishlist/screens/home/homeview.dart';
 
 import '../../../helpers/constants/app_colors.dart';
 import '../../../helpers/constants/app_constants.dart';
@@ -28,9 +27,6 @@ class _HomeTabState extends State<HomeTab> {
   int _counter = 0;
   @override
   void initState() {
-    // TODO: implement initState
-    homeController.clearAll();
-    homeController.fetchClothingList();
     super.initState();
     _controller = SwipableStackController()..addListener(_listenController);
 
