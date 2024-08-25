@@ -1,5 +1,6 @@
 
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,9 +29,8 @@ class _HomeTabState extends State<HomeTab> {
   @override
   void initState() {
     // TODO: implement initState
-    //homeController.clearAll();
-    //homeController.getChapterData();
-    //homeController.checkContentRating();
+    homeController.clearAll();
+    homeController.fetchClothingList();
     super.initState();
     _controller = SwipableStackController()..addListener(_listenController);
 
@@ -54,19 +54,37 @@ class _HomeTabState extends State<HomeTab> {
           } else {
             Map<String, dynamic> itemTitle = {}; // initialize empty list
             if (homeController.clothingList.isNotEmpty) {
+              print('Clothing List is not empty');
               itemTitle = homeController.clothingList[_counter]; // populate clothing list
             }
             if(homeController.clothingList.isNotEmpty) {
               return
-                Row(children: [ // populate the title for each item
-                  AppText(
-                    text: itemTitle['clothingTitle'],
-                    color: AppColors.accentColor,
-                    fontSize: AppConstants.titleFontSize,
-                    fontFamily: AppConstants.fontFamily,
-                    maxLines: 1,
-                  )
-                ]
+                Row(
+                  children: [
+                    // populate the title for each item
+                    /*Expanded(
+                      child:
+                      AppText(
+                        text: itemTitle['title'],
+                        color: AppColors.accentColor,
+                        fontSize: AppConstants.subTitleFontSize,
+                        fontFamily: AppConstants.fontFamily,
+                        maxLines: 2,
+                      )
+                    )
+
+                     */
+                    AutoSizeText(
+                      itemTitle['title'],
+                      style: const TextStyle(
+                        color: AppColors.accentColor,
+                        fontSize: AppConstants.subTitleFontSize,
+                        fontFamily: AppConstants.fontFamily,
+                      ),
+                      overflow: TextOverflow.clip,
+                      maxLines: 2,
+                    )
+                  ]
                 );
             }else{
               return const AppText( // return an empty title text box if the list is empty
@@ -118,7 +136,7 @@ class _HomeTabState extends State<HomeTab> {
                       borderRadius: BorderRadius.circular(25.0),
                       child: Opacity(opacity: 1,
                         child: Image.network(
-                          item['image1URL'],
+                          item['imageurl1'],
                           fit: BoxFit.fitWidth,
                         ),
                       ),

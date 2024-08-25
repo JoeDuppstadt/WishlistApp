@@ -9,4 +9,5 @@ class AppConstants {
   static const String fontFamily = 'lufga';
   //static const String mangaSave = "mangaSaveKey";
   static const double titleFontSize = 25;
+  static const double subTitleFontSize = 19;
 }

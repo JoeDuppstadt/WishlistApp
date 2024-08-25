@@ -46,15 +46,14 @@ class _SaveTabState extends State<SaveTab> {
               onTap: (){
                 homeController.selectedTab('detail');
                 homeController.tempData(
-                    item['clothingTitle'],
-                    item['clothingId'],
-                    item['image1URL'],
-                    item['image2URL'],
-                    item['image3URL'],
-                    item['image4URL'],
-                    item['image5URL'],
-                    item['image6URL'],
-                    item['contentRating'],
+                    item['title'],
+                    item['pid'],
+                    item['imageurl1'],
+                    item['imageurl2'],
+                    item['imageurl3'],
+                    item['imageurl4'],
+                    item['imageurl5'],
+                    item['imageurl6'],
                     item['description'],
                     item['brand'],
                     item['price']
@@ -66,11 +65,10 @@ class _SaveTabState extends State<SaveTab> {
         },
 
               child: ClothingItemWidget(
-                title: item['clothingTitle'],
-                imageUrl: item['image1URL'],
+                title: item['title'],
+                imageUrl: item['imageurl1'],
                 contentRating: item['contentRating'],
                 description: item['description'],
-                originalLanguage: item['clothingTitle'],
                 brand: item['brand'],
                 price: item['price']
               ),

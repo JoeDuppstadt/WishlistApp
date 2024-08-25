@@ -52,6 +52,7 @@ class _DetailTabState extends State<DetailTab> {
             ),
           )
       ),
+      /*
       ClipRRect(
           borderRadius: BorderRadius.circular(25.0),
           child: Opacity(opacity: 1,
@@ -79,8 +80,22 @@ class _DetailTabState extends State<DetailTab> {
             ),
           )
       ),
+
+       */
     ];
-    String contentRating = homeController.contentRating.value;
+    if (homeController.imageURL4.value.isNotEmpty){
+      carouselItems.add(
+        ClipRRect(
+            borderRadius: BorderRadius.circular(25.0),
+            child: Opacity(opacity: 1,
+              child: Image.network(
+                homeController.imageURL4.value,
+                fit: BoxFit.cover,
+              ),
+            )
+        ),
+      );
+    }
     String price = homeController.price.value;
 
     return  Scaffold(
@@ -91,12 +106,11 @@ class _DetailTabState extends State<DetailTab> {
         ),
         backgroundColor: AppColors.backgroundColor,
         title: Row(
-
           children: [
             AppText(
               text: homeController.clothingTitle.value,
               color: AppColors.accentColor,
-              fontSize: AppConstants.titleFontSize,
+              fontSize: AppConstants.subTitleFontSize,
               fontFamily: AppConstants.fontFamily,
             )
           ],
@@ -156,18 +170,6 @@ class _DetailTabState extends State<DetailTab> {
                         fontSize: 20,
                         maxLines: 3,
                       ),
-                      AppText(
-                        text: 'Content Rating:',
-                        color: AppColors.textColor.withOpacity(0.7),
-                        fontSize: 20,
-                        maxLines: 3,
-                      ),
-                      AppText(
-                        text: '$contentRating/5★',
-                        color: AppColors.accentColor,
-                        fontSize: 20,
-                        maxLines: 3,
-                      ),
                     ],
                   ),
                 ),
@@ -189,7 +191,7 @@ class _DetailTabState extends State<DetailTab> {
               padding: const EdgeInsets.all(10),
               child: Obx(() => AppText(
                 text: homeController.description.value,
-                color: AppColors.detailDescriptionColor,
+                color: AppColors.accentColor,
                 fontSize: 16,
                 maxLines: 10,
                 overflow: TextOverflow.ellipsis,

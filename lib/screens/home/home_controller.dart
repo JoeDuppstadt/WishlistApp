@@ -30,7 +30,6 @@ class HomeViewController extends GetxController {
   var imageURL5 = ''.obs;
   var imageURL6 = ''.obs;
   var imageURL7 = ''.obs;
-  var contentRating = ''.obs;
   //"createdAt": createdAt,
   //"updatedAt": updatedAt,
   var description = ''.obs;
@@ -43,7 +42,7 @@ class HomeViewController extends GetxController {
   Future<void> fetchClothingList() async {
     isLoading(true);
     try {
-      List<Map<String, String>> fetchedClothingList = await ApiService().fetchActiveClothingData();
+      List<Map<String, dynamic>> fetchedClothingList = await ApiService().fetchActiveClothingData();
       clothingList = fetchedClothingList;
       appPrinter.printWithTag('Items in Controller',fetchedClothingList.toString());
       await Future.delayed(const Duration(seconds: 2));
@@ -78,7 +77,6 @@ class HomeViewController extends GetxController {
     String imageURL4X,
     String imageURL5X,
     String imageURL6X,
-    String contentRatingX,
     //"createdAt": createdAt,
     //"updatedAt": updatedAt,
     String descriptionX,
@@ -93,7 +91,6 @@ class HomeViewController extends GetxController {
       appPrinter.printWithTag('temp: imageURL4',imageURL4X);
       appPrinter.printWithTag('temp: imageURL5',imageURL5X);
       appPrinter.printWithTag('temp: imageURL6',imageURL6X);
-      appPrinter.printWithTag('temp: contentRatingX',contentRatingX);
       appPrinter.printWithTag('temp: descriptionX',descriptionX);
       appPrinter.printWithTag('temp: brandX',brandX);
       appPrinter.printWithTag('temp: priceX',priceX);
@@ -105,7 +102,6 @@ class HomeViewController extends GetxController {
       imageURL4.value = imageURL4X;
       imageURL5.value = imageURL5X;
       imageURL6.value = imageURL6X;
-      contentRating.value = contentRatingX;
       description.value = descriptionX;
       brand.value = brandX;
       price.value = priceX;

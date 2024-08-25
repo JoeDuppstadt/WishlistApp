@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../constants/app_colors.dart';
 import 'app_text.dart';
@@ -8,14 +9,13 @@ import 'app_text.dart';
 
 class ClothingItemWidget extends StatelessWidget {
   final String title;
-  final String contentRating;
+  final String? contentRating;
   final String imageUrl;
   final String description;
-  final String originalLanguage;
   final String brand;
   final String price;
 
-  const ClothingItemWidget({super.key, required this.title, required this.contentRating, required this.imageUrl, required this.description, required this.originalLanguage, required this.brand, required this.price });
+  const ClothingItemWidget({super.key, required this.title, required this.contentRating, required this.imageUrl, required this.description, required this.brand, required this.price });
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +59,9 @@ class ClothingItemWidget extends StatelessWidget {
                 AppText(text: title,fontSize: 18,color: AppColors.textColor,),
                 Row(
                   children: [
-                    AppText(text: '$contentRating★',fontSize: 12,color: AppColors.textColor.withOpacity(0.3),),
-                    AppText(text: ' ($originalLanguage)',fontSize: 12,color: AppColors.textColor.withOpacity(0.3)),
-                    AppText(text: ' | $brand',fontSize: 12,color: AppColors.textColor.withOpacity(0.3)),
+                    //AppText(text: '$contentRating★',fontSize: 12,color: AppColors.textColor.withOpacity(0.3));
+                    //AppText(text: ' ($originalLanguage)',fontSize: 12,color: AppColors.textColor.withOpacity(0.3)),
+                    AppText(text: '$brand',fontSize: 12,color: AppColors.textColor.withOpacity(0.3)),
                     AppText(text: ' | \$$price',fontSize: 12,color: AppColors.textColor.withOpacity(0.3)),
                   ],
                 ),

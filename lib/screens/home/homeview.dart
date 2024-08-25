@@ -25,8 +25,6 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     homeController.fetchClothingList();
-
-    print(homeController.clothingList.length);
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
