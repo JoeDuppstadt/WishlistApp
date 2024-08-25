@@ -29,62 +29,37 @@ class _DetailTabState extends State<DetailTab> {
     //homeController.getChapterData();
     //homeController.checkContentRating();
     super.initState();
-
   }
-  @override
-  Widget build(BuildContext context) {
-    List<Widget> carouselItems = [
-      ClipRRect(
-          borderRadius: BorderRadius.circular(25.0),
-          child: Opacity(opacity: 1,
-            child: Image.network(
-              homeController.imageURL2.value,
-              fit: BoxFit.fitHeight,
-            ),
-          )
-      ),
-      ClipRRect(
-          borderRadius: BorderRadius.circular(25.0),
-          child: Opacity(opacity: 1,
-            child: Image.network(
-              homeController.imageURL3.value,
-              fit: BoxFit.cover,
-            ),
-          )
-      ),
-      /*
-      ClipRRect(
-          borderRadius: BorderRadius.circular(25.0),
-          child: Opacity(opacity: 1,
-            child: Image.network(
-              homeController.imageURL4.value,
-              fit: BoxFit.cover,
-            ),
-          )
-      ),
-      ClipRRect(
-          borderRadius: BorderRadius.circular(25.0),
-          child: Opacity(opacity: 1,
-            child: Image.network(
-              homeController.imageURL5.value,
-              fit: BoxFit.cover,
-            ),
-          )
-      ),
-      ClipRRect(
-          borderRadius: BorderRadius.circular(25.0),
-          child: Opacity(opacity: 1,
-            child: Image.network(
-              homeController.imageURL6.value,
-              fit: BoxFit.cover,
-            ),
-          )
-      ),
-
-       */
-    ];
+  List<Widget> populateCarosuelItems(){
+    List<Widget> tempCarouselItems = [];
+    if (homeController.imageURL2.value.isNotEmpty){
+      tempCarouselItems.add(
+        ClipRRect(
+            borderRadius: BorderRadius.circular(25.0),
+            child: Opacity(opacity: 1,
+              child: Image.network(
+                homeController.imageURL2.value,
+                fit: BoxFit.cover,
+              ),
+            )
+        ),
+      );
+    }
+    if (homeController.imageURL3.value.isNotEmpty){
+      tempCarouselItems.add(
+        ClipRRect(
+            borderRadius: BorderRadius.circular(25.0),
+            child: Opacity(opacity: 1,
+              child: Image.network(
+                homeController.imageURL3.value,
+                fit: BoxFit.cover,
+              ),
+            )
+        ),
+      );
+    }
     if (homeController.imageURL4.value.isNotEmpty){
-      carouselItems.add(
+      tempCarouselItems.add(
         ClipRRect(
             borderRadius: BorderRadius.circular(25.0),
             child: Opacity(opacity: 1,
@@ -96,6 +71,38 @@ class _DetailTabState extends State<DetailTab> {
         ),
       );
     }
+    if (homeController.imageURL5.value.isNotEmpty){
+      tempCarouselItems.add(
+        ClipRRect(
+            borderRadius: BorderRadius.circular(25.0),
+            child: Opacity(opacity: 1,
+              child: Image.network(
+                homeController.imageURL5.value,
+                fit: BoxFit.cover,
+              ),
+            )
+        ),
+      );
+    }
+    if (homeController.imageURL6.value.isNotEmpty){
+      tempCarouselItems.add(
+        ClipRRect(
+            borderRadius: BorderRadius.circular(25.0),
+            child: Opacity(opacity: 1,
+              child: Image.network(
+                homeController.imageURL6.value,
+                fit: BoxFit.cover,
+              ),
+            )
+        ),
+      );
+    }
+    return tempCarouselItems;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> carouselItems = populateCarosuelItems();
     String price = homeController.price.value;
 
     return  Scaffold(

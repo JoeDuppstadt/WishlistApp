@@ -1,7 +1,6 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:wishlist/helpers/classes/item.dart';
+
 
 class ApiService {
   Future<List<Map<String, dynamic>>> fetchActiveClothingData() async {
