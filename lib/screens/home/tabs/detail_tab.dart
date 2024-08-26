@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:wishlist/helpers/constants/constants.dart';
 import '../../../helpers/constants/app_colors.dart';
 import '../../../helpers/constants/app_constants.dart';
@@ -9,6 +10,7 @@ import '../../../helpers/constants/app_logger.dart';
 import '../../../helpers/widgets/app_text.dart';
 import '../home_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class DetailTab extends StatefulWidget {
@@ -24,10 +26,6 @@ class _DetailTabState extends State<DetailTab> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    //homeController.clearAll();
-    //homeController.getChapterData();
-    //homeController.checkContentRating();
     super.initState();
   }
   List<Widget> populateCarosuelItems(){
@@ -100,6 +98,14 @@ class _DetailTabState extends State<DetailTab> {
     return tempCarouselItems;
   }
 
+  Future<void> _launchURL(url) async {
+    if (await canLaunchUrlString(url)) {
+      await launchUrlString(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> carouselItems = populateCarosuelItems();
@@ -113,14 +119,16 @@ class _DetailTabState extends State<DetailTab> {
         ),
         backgroundColor: AppColors.backgroundColor,
         title: Row(
-          children: [
-            AppText(
-              text: homeController.clothingTitle.value,
-              color: AppColors.accentColor,
-              fontSize: AppConstants.subTitleFontSize,
-              fontFamily: AppConstants.fontFamily,
-            )
-          ],
+            children: [
+              Expanded(child:
+                AppText(
+                  text: homeController.clothingTitle.value,
+                  color: AppColors.accentColor,
+                  fontSize: AppConstants.subTitleFontSize,
+                  fontFamily: AppConstants.fontFamily,
+                ),
+              )
+            ],
         ),
       ),
       body: SingleChildScrollView(
@@ -225,7 +233,13 @@ class _DetailTabState extends State<DetailTab> {
                   Expanded(
                     child:
                     ElevatedButton(
-                      onPressed: null,
+                      onPressed: () async {
+                        try {
+                          await _launchURL(homeController.url.value);
+                        } catch(e) {
+                          print(e.toString());
+                        }
+                      },
                       child: Container(
                         child:
                         const AppText(

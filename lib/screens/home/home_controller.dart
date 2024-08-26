@@ -35,6 +35,7 @@ class HomeViewController extends GetxController {
   var description = ''.obs;
   var brand = ''.obs;
   var price = ''.obs;
+  var url = ''.obs;
   /// Temp Data
 
   AppPrinter appPrinter = AppPrinter();
@@ -71,6 +72,7 @@ class HomeViewController extends GetxController {
   void tempData(
     String clothingTitleX,
     String clothingIdX,
+    String urlX,
     String imageURL1X,
     String imageURL2X,
     String imageURL3X,
@@ -85,6 +87,7 @@ class HomeViewController extends GetxController {
       ) {
       appPrinter.printWithTag('temp: clothingTitle',clothingTitleX);
       appPrinter.printWithTag('temp: clothingId',clothingIdX);
+      appPrinter.printWithTag('temp: url', urlX);
       appPrinter.printWithTag('temp: imageURL1',imageURL1X);
       appPrinter.printWithTag('temp: imageURL2',imageURL2X);
       appPrinter.printWithTag('temp: imageURL3',imageURL3X);
@@ -96,6 +99,7 @@ class HomeViewController extends GetxController {
       appPrinter.printWithTag('temp: priceX',priceX);
       clothingTitle.value = clothingTitleX;
       clothingId.value = clothingIdX;
+      url.value = urlX;
       imageURL1.value  = imageURL1X;
       imageURL2.value = imageURL2X;
       imageURL3.value = imageURL3X;

@@ -48,6 +48,7 @@ class _SaveTabState extends State<SaveTab> {
                 homeController.tempData(
                     item['title'],
                     item['pid'],
+                    item['url'],
                     item['imageurl1'],
                     item['imageurl2'],
                     item['imageurl3'],

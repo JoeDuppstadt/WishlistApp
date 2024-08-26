@@ -56,7 +56,7 @@ class ClothingItemWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                AppText(text: title,fontSize: 18,color: AppColors.textColor,),
+                AppText(text: title,fontSize: 18,color: AppColors.accentColor,),
                 Row(
                   children: [
                     //AppText(text: '$contentRating★',fontSize: 12,color: AppColors.textColor.withOpacity(0.3));

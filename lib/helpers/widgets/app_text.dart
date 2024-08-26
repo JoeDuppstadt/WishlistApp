@@ -19,7 +19,7 @@ class AppText extends StatelessWidget {
     this.fontWeight = FontWeight.normal,
     this.fontStyle = FontStyle.normal,
     this.textAlign = TextAlign.start,
-    this.overflow = TextOverflow.clip,
+    this.overflow = TextOverflow.ellipsis,
     this.maxLines = 1,
     this.fontFamily = 'lufga',
   });

@@ -50,7 +50,6 @@ class _HomeTabState extends State<HomeTab> {
           } else {
             Map<String, dynamic> itemTitle = {}; // initialize empty list
             if (homeController.clothingList.isNotEmpty) {
-              print('Clothing List is not empty');
               itemTitle = homeController.clothingList[_counter]; // populate clothing list
             }
             if(homeController.clothingList.isNotEmpty) {
