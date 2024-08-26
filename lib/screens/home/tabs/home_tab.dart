@@ -56,28 +56,17 @@ class _HomeTabState extends State<HomeTab> {
               return
                 Row(
                   children: [
-                    // populate the title for each item
-                    /*Expanded(
-                      child:
-                      AppText(
-                        text: itemTitle['title'],
-                        color: AppColors.accentColor,
-                        fontSize: AppConstants.subTitleFontSize,
-                        fontFamily: AppConstants.fontFamily,
+                    Expanded(child:
+                      AutoSizeText(
+                        itemTitle['title'],
+                        style: const TextStyle(
+                          color: AppColors.accentColor,
+                          fontSize: AppConstants.subTitleFontSize,
+                          fontFamily: AppConstants.fontFamily,
+                        ),
+                        overflow: TextOverflow.clip,
                         maxLines: 2,
-                      )
-                    )
-
-                     */
-                    AutoSizeText(
-                      itemTitle['title'],
-                      style: const TextStyle(
-                        color: AppColors.accentColor,
-                        fontSize: AppConstants.subTitleFontSize,
-                        fontFamily: AppConstants.fontFamily,
                       ),
-                      overflow: TextOverflow.clip,
-                      maxLines: 2,
                     )
                   ]
                 );

@@ -1,16 +1,23 @@
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 
 class ApiService {
   Future<List<Map<String, dynamic>>> fetchActiveClothingData() async {
-    const String url = 'http://127.0.0.1:8000/getAllItems';
-
+    String? apiKey = dotenv.env['API_KEY'];
+    String? url = dotenv.env['BASE_URL'];
+    const String endpoint = '/getAllItems';
+    Map<String, String> headers = {
+      'X-API-KEY': apiKey!,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
     try{
 
       final response = await http.get( // send api request to return all items
-        Uri.parse(url),
-        headers: {"Content-Type": "application/json"}
+        Uri.parse(url! + endpoint),
+        headers: headers
       );
       if (response.statusCode == 200){
         List<Map<String, dynamic>> clothingList = [];
