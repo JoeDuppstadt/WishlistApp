@@ -13,14 +13,13 @@ class ApiService {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     };
+    List<Map<String, dynamic>> clothingList = [];
     try{
-
       final response = await http.get( // send api request to return all items
         Uri.parse(url! + endpoint),
         headers: headers
       );
       if (response.statusCode == 200){
-        List<Map<String, dynamic>> clothingList = [];
         List<dynamic> responseData = json.decode(response.body)[0];
         if (responseData.isNotEmpty) {
           for (var item in responseData) {
@@ -69,7 +68,8 @@ class ApiService {
       }
 
     }catch (e) {
-      throw Exception(e);
+      print('Cannot connect to api');
+      return clothingList;
     }
   }
 

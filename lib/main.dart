@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wishlist/screens/error/errorview.dart';
 import 'package:wishlist/screens/home/home_controller.dart';
 import 'package:wishlist/screens/home/homeview.dart';
 import 'helpers/constants/app_colors.dart';
@@ -44,13 +45,23 @@ class _RootState extends State<Root> {
   @override
   void initState() {
     homeController.clearAll();
+    print('start');
     homeController.fetchClothingList();
+    print('here3');
     super.initState();
+    print('here5');
     Future.delayed(const Duration(seconds: 3), () {
+      print(homeController.clothingList.isNotEmpty);
+
+      homeController.clothingList.isNotEmpty ?
       Get.offAll(
           HomeView(),
           transition: Transition.topLevel,
           //duration: const Duration(seconds: 1)
+      ) :
+      Get.offAll(
+        Errorview(errorMessage: 'Please Try Again Soon!'),
+        transition: Transition.topLevel
       );
     });
   }

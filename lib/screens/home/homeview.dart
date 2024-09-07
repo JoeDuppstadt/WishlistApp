@@ -4,7 +4,6 @@ import 'package:wishlist/helpers/constants/constants.dart';
 import 'package:wishlist/screens/home/tabs/home_tab.dart';
 import 'package:wishlist/screens/home/tabs/save_tab.dart';
 
-import '../../helpers/service/data_handler.dart';
 import '../../helpers/widgets/app_text.dart';
 import 'home_controller.dart';
 
@@ -24,7 +23,6 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    homeController.fetchClothingList();
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(

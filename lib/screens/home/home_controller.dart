@@ -40,7 +40,7 @@ class HomeViewController extends GetxController {
 
   AppPrinter appPrinter = AppPrinter();
 
-  Future<void> fetchClothingList() async {
+  Future<void> fetchClothingList()  async {
     isLoading(true);
     try {
       List<Map<String, dynamic>> fetchedClothingList = await ApiService().fetchActiveClothingData();
