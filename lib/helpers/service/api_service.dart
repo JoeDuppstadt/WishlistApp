@@ -1,12 +1,20 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 
 class ApiService {
   Future<List<Map<String, dynamic>>> fetchActiveClothingData() async {
+    String? url;
+    if (kDebugMode) {
+      url = dotenv.env['BASE_URL_LOCAL'];
+    }
+    else {
+      url = dotenv.env['BASE_URL'];
+    }
+    print(url);
     String? apiKey = dotenv.env['API_KEY'];
-    String? url = dotenv.env['BASE_URL'];
     const String endpoint = '/getAllItems';
     Map<String, String> headers = {
       'X-API-KEY': apiKey!,

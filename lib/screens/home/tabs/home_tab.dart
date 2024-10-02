@@ -23,8 +23,10 @@ class _HomeTabState extends State<HomeTab> {
   final HomeViewController homeController = Get.put(HomeViewController());
   AppPrinter appPrinter = AppPrinter();
   late final SwipableStackController _controller;
+
   void _listenController() => setState(() {});
-  int _counter = 0;
+  int _swipecounter = 0;
+  int _imagecounter = 0;
   @override
   void initState() {
     super.initState();
@@ -49,10 +51,9 @@ class _HomeTabState extends State<HomeTab> {
             );
           } else {
             Map<String, dynamic> itemTitle = {}; // initialize empty list
-            if (homeController.clothingList.isNotEmpty) {
-              itemTitle = homeController.clothingList[_counter]; // populate clothing list
-            }
-            if(homeController.clothingList.isNotEmpty) {
+
+            if(homeController.clothingList.isNotEmpty && _swipecounter != homeController.clothingList.length) {
+              itemTitle = homeController.clothingList[_swipecounter]; // populate clothing list
               return
                 Row(
                   children: [
@@ -71,12 +72,8 @@ class _HomeTabState extends State<HomeTab> {
                   ]
                 );
             }else{
-              return const AppText( // return an empty title text box if the list is empty
-                text: '',
-                color: AppColors.accentColor,
-                fontSize: AppConstants.titleFontSize,
-                fontFamily: AppConstants.fontFamily,
-                maxLines: 1,
+              return const Center(
+                child: Text('No more clothes available.'),
               );
             }
             }
@@ -91,13 +88,14 @@ class _HomeTabState extends State<HomeTab> {
         }
         else if (homeController.clothingList.isEmpty) {
           return const Center(
-            child: Text('No clothes found.'),
+            child: Text(''),
           );
         }
         else{
+          Map<String, dynamic> item = homeController.clothingList[_swipecounter];
           return
             SwipableStack(
-              itemCount: homeController.clothingList.length,
+              itemCount: 100,
               detectableSwipeDirections: const {
                 SwipeDirection.right,
                 SwipeDirection.left,
@@ -105,31 +103,33 @@ class _HomeTabState extends State<HomeTab> {
               controller: _controller,
               stackClipBehaviour: Clip.none,
               onSwipeCompleted: (index, direction) {
-                if (kDebugMode) {
-                  print('$index, $direction');
+                if(direction == SwipeDirection.right) {
+                  _swipecounter++;
                 }
-                _counter++;
+                else{
+                  homeController.clothingList.removeAt(_swipecounter);
+                  item = homeController.clothingList[_swipecounter];
+                }
               },
               horizontalSwipeThreshold: 0.8,
               verticalSwipeThreshold: 0.8,
               builder: (context, properties) {
-                Map<String, dynamic> item = homeController.clothingList[properties.index];
-                return Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(25.0),
-                      child: Opacity(opacity: 1,
-                        child: Image.network(
-                          item['imageurl1'],
-                          fit: BoxFit.fitWidth,
+                  return
+                    Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(25.0),
+                          child: Opacity(opacity: 1,
+                            child: Image.network(
+                              item['imageurl1'],
+                              fit: BoxFit.fitWidth,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ],
-                );
+                      ],
+                    );
               },
             );
-
         }
       }),
 

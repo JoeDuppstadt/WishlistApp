@@ -45,14 +45,9 @@ class _RootState extends State<Root> {
   @override
   void initState() {
     homeController.clearAll();
-    print('start');
     homeController.fetchClothingList();
-    print('here3');
     super.initState();
-    print('here5');
     Future.delayed(const Duration(seconds: 3), () {
-      print(homeController.clothingList.isNotEmpty);
-
       homeController.clothingList.isNotEmpty ?
       Get.offAll(
           HomeView(),
