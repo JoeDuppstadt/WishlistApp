@@ -1,7 +1,6 @@
 
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:swipable_stack/swipable_stack.dart';
@@ -9,7 +8,6 @@ import 'package:swipable_stack/swipable_stack.dart';
 import '../../../helpers/constants/app_colors.dart';
 import '../../../helpers/constants/app_constants.dart';
 import '../../../helpers/constants/app_logger.dart';
-import '../../../helpers/widgets/app_text.dart';
 import '../home_controller.dart';
 
 class HomeTab extends StatefulWidget {
@@ -26,7 +24,6 @@ class _HomeTabState extends State<HomeTab> {
 
   void _listenController() => setState(() {});
   int _swipecounter = 0;
-  int _imagecounter = 0;
   @override
   void initState() {
     super.initState();
@@ -104,12 +101,13 @@ class _HomeTabState extends State<HomeTab> {
               stackClipBehaviour: Clip.none,
               onSwipeCompleted: (index, direction) {
                 if(direction == SwipeDirection.right) {
-                  _swipecounter++;
+                  homeController.clothingSavedList.addNonNull(item);
                 }
                 else{
-                  homeController.clothingList.removeAt(_swipecounter);
-                  item = homeController.clothingList[_swipecounter];
+                  homeController.userRemovedList.addNonNull(item);
                 }
+                homeController.clothingList.removeAt(_swipecounter);
+                item = homeController.clothingList[_swipecounter];
               },
               horizontalSwipeThreshold: 0.8,
               verticalSwipeThreshold: 0.8,
@@ -130,9 +128,9 @@ class _HomeTabState extends State<HomeTab> {
                                   else{
                                     return Center(
                                         child: CircularProgressIndicator(
-                                        value: loadingProgress.expectedTotalBytes != null
-                                        ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
-                                      : null,
+                                          color: AppColors.accentColor,
+                                          value: loadingProgress.expectedTotalBytes != null
+                                          ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1) : null,
                                       )
                                     );
                                   }

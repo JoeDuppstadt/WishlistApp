@@ -8,6 +8,8 @@ class HomeViewController extends GetxController {
   var selectedIndex = 0.obs;
   var setTabName = 'home'.obs;
   List clothingList = [].obs;
+  List userRemovedList = [].obs;
+  List userLikedList = [].obs;
   final clothingSavedList = [].obs;
 
   final savingList = [].obs;
@@ -52,6 +54,9 @@ class HomeViewController extends GetxController {
       appPrinter.printWithTag('Items in Controller',e.toString());
     }
   }
+
+
+
 
   Future<void> getChapterData() async {
     appPrinter.printWithTag('Manga ID :: ', clothingId.value);
