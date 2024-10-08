@@ -14,11 +14,39 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends State<HomeView> with WidgetsBindingObserver {
   final HomeViewController homeController = Get.put(HomeViewController());
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this); // Add observer
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this); // Remove observer
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused) {
+      // Perform your specific action here when the app is paused
+      _handleAppInactive();
+    } else if (state == AppLifecycleState.resumed) {
+      // Optionally handle when the app resumes
+      _handleAppResumed();
+    }
+  }
+
+  void _handleAppInactive() {
+    print("App is paused (inactive or closed).");
+    // You can add logic to save data or perform other actions here
+  }
+
+  void _handleAppResumed() {
+    print("App is resumed.");
+    // You can add logic to handle when the app returns to the foreground
   }
 
   @override

@@ -47,34 +47,35 @@ class _HomeTabState extends State<HomeTab> {
               child: Text(''),
             );
           } else {
-            Map<String, dynamic> itemTitle = {}; // initialize empty list
+              Map<String, dynamic> itemTitle = {}; // initialize empty list
 
-            if(homeController.clothingList.isNotEmpty && _swipecounter != homeController.clothingList.length) {
-              itemTitle = homeController.clothingList[_swipecounter]; // populate clothing list
-              return
-                Row(
-                  children: [
-                    Expanded(child:
-                      AutoSizeText(
-                        itemTitle['title'],
-                        style: const TextStyle(
-                          color: AppColors.accentColor,
-                          fontSize: AppConstants.subTitleFontSize,
-                          fontFamily: AppConstants.fontFamily,
+              if(homeController.clothingList.isNotEmpty && _swipecounter != homeController.clothingList.length) {
+                itemTitle = homeController.clothingList[_swipecounter]; // populate clothing list
+                return
+                  Row(
+                    children: [
+                      Expanded(child:
+                        AutoSizeText(
+                          itemTitle['title'],
+                          style: const TextStyle(
+                            color: AppColors.accentColor,
+                            fontSize: AppConstants.subTitleFontSize,
+                            fontFamily: AppConstants.fontFamily,
+                          ),
+                          overflow: TextOverflow.clip,
+                          maxLines: 2,
                         ),
-                        overflow: TextOverflow.clip,
-                        maxLines: 2,
-                      ),
-                    )
-                  ]
+                      )
+                    ]
+                  );
+              }else{
+                return const Center(
+                  child: Text('No more clothes available.'),
                 );
-            }else{
-              return const Center(
-                child: Text('No more clothes available.'),
-              );
+              }
             }
-            }
-        }),
+        }
+        ),
         ),
       body: Obx(() {
         if (homeController.isLoading.value) {

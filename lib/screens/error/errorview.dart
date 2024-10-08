@@ -12,7 +12,7 @@ class Errorview extends StatelessWidget {
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         backgroundColor: AppColors.backgroundColor,
-        title: const Text('Error',
+        title: const Text('',
         style: TextStyle(
           color: AppColors.accentColor
         ),

@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wishlist/helpers/service/api_service.dart';
 import '../../helpers/constants/app_logger.dart';
 
@@ -54,7 +53,6 @@ class HomeViewController extends GetxController {
       appPrinter.printWithTag('Items in Controller',e.toString());
     }
   }
-
 
 
 

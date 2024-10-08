@@ -50,13 +50,13 @@ class _RootState extends State<Root> {
     Future.delayed(const Duration(seconds: 3), () {
       homeController.clothingList.isNotEmpty ?
       Get.offAll(
-          HomeView(),
-          transition: Transition.topLevel,
-          //duration: const Duration(seconds: 1)
+        HomeView(),
+        transition: Transition.topLevel,
+        //duration: const Duration(seconds: 1)
       ) :
       Get.offAll(
-        Errorview(errorMessage: 'Please Try Again Soon!'),
-        transition: Transition.topLevel
+          Errorview(errorMessage: 'Please Try Again Soon!'),
+          transition: Transition.topLevel
       );
     });
   }
